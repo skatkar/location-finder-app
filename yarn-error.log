@@ -1,0 +1,42 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add babel-preset-reactbabel-preset-env
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\CampusUser\Downloads\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Users\CampusUser\Desktop\project\solr-7.6.0\bin;C:\Program Files (x86)\Yarn\bin\;C:\Users\CampusUser\AppData\Local\Microsoft\WindowsApps;C:\Users\CampusUser\AppData\Roaming\npm;C:\Users\CampusUser\AppData\Local\atom\bin;C:\Users\CampusUser\Downloads\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Users\CampusUser\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\CampusUser\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\CampusUser\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  10.15.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/babel-preset-reactbabel-preset-env: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65364:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129397:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130369:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130291:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1103:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "indecision-app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Swapnil K",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
