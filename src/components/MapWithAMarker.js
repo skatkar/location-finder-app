@@ -14,7 +14,11 @@ import {
     >
 
     {props.coordinates.length === 0 && 
-        <Marker position={{ lat: (props.lat), lng: (props.lng) }}/>}
+        <Marker 
+        icon="https://img.icons8.com/ios/50/000000/map-pin-filled.png"
+        position={{ lat: (props.lat), lng: (props.lng) }}
+        />
+    }
 
     {props.coordinates.length !== 0 && 
         

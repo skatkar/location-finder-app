@@ -5,11 +5,13 @@ import Spinner from './Spinner';
 import '../styles/App.css';
 import GOOGLE_MAPS_API_KEY from '../../Config_Keys';
 import api from '../api/api';
+import axios from 'axios';
 
 class MapSelectedLocation extends React.Component {
  state = {
         lat:null,
         lng:null,
+        city:null,
         coordinates: [
                         { lat: 33.684566, lng: -117.826508 }, 
                         { lat: 34.052235, lng: -118.243683 }
@@ -22,7 +24,7 @@ class MapSelectedLocation extends React.Component {
       const location = window.navigator && window.navigator.geolocation;
       if (location) {
         location.getCurrentPosition((position) => {
-          console.log(position)
+          //console.log(position);
           this.setState({
               lat: position.coords.latitude,
               lng: position.coords.longitude
@@ -36,7 +38,10 @@ class MapSelectedLocation extends React.Component {
       }
     }
 
-    componentDidMount() {
+        
+
+    findSelectedLocations(){
+      console.log("User city is: ", this.state.city);
       api.get(`api/v1.0/locations?locationType=school`)
       .then(res => {
           const locations = res.data;
@@ -53,14 +58,36 @@ class MapSelectedLocation extends React.Component {
             temp:latlongs 
           });
         })
-    } 
+    }
+
+    ipLookUp(){
+      axios.get(`http://ip-api.com/json`)
+        .then(response => {
+            this.setState({
+              city:response.data.city
+            })
+            this.findSelectedLocations();
+        })
+    }
+
+    componentDidMount() {
+      this.ipLookUp();
+      console.log("User selected choice", this.props.match.params.locationType);
+    }
+
+    componentDidUpdate(prevProps) {
+      if(this.props.match.params.locationType != prevProps.match.params.locationType) {
+        this.ipLookUp();
+        console.log("User selected choice", this.props.match.params.locationType);
+      }
+    }
 
     render(){
         
         const { lat,lng}= this.state;
         const {temp} = this.state;
         { temp.length !==0 ? console.log(temp[0].lat + " "+ temp[0].lng + " "+ temp[1].lat + " "+temp[1].lng): console.log("Loading..")}
-        //console.log("Temp array is: " + temp[0].lat + temp[0].lng + temp[1].lat + temp[1].lng);
+        
         return(
                       
             <div id="App">

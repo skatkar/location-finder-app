@@ -3,6 +3,7 @@ import MapWithAMarker from './MapWithAMarker';
 import SideBar from './Sidebar';
 import Spinner from './Spinner';
 import '../styles/App.css';
+import axios from 'axios';
 import GOOGLE_MAPS_API_KEY from '../../Config_Keys';
 
 const location = window.navigator && window.navigator.geolocation;
@@ -25,10 +26,13 @@ class MapHomeLocation extends React.Component {
             homeLng: position.coords.longitude
           })
         }, (error) => {
-          this.setState({
-            homeLat: 'err-latitude',
-            homeLng: 'err-longitude'
-          })
+          axios.get(`http://ip-api.com/json`)
+            .then(response => {
+              this.setState({
+                homeLat: response.data.lat,
+                homeLng: response.data.lon
+              })
+            })
         })
       }
     }
