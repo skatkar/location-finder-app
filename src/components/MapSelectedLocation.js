@@ -30,10 +30,16 @@ class MapSelectedLocation extends React.Component {
               lng: position.coords.longitude
           })
         }, (error) => {
-          this.setState({
-              lat: 'err-latitude',
-              lng: 'err-longitude'
-          })
+         
+          axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
+            .then(response => {
+              console.log('Response from svc: ', response);
+              this.setState({
+                lat: parseFloat(response.data.loc.split(',')[0]),
+                lng: parseFloat(response.data.loc.split(',')[1])
+              })
+            })
+
         })
       }
     }
@@ -64,7 +70,7 @@ class MapSelectedLocation extends React.Component {
       axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
         .then(response => {
             this.setState({
-              city:response.city
+              city:response.data.city
             })
             this.findSelectedLocations();
         })
