@@ -26,11 +26,11 @@ class MapHomeLocation extends React.Component {
             homeLng: position.coords.longitude
           })
         }, (error) => {
-          axios.get(`http://ip-api.com/json`)
+          axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
             .then(response => {
               this.setState({
-                homeLat: response.data.lat,
-                homeLng: response.data.lon
+                homeLat: response.loc.split(',')[0],
+                homeLng: response.loc.split(',')[1]
               })
             })
         })

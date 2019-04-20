@@ -61,10 +61,10 @@ class MapSelectedLocation extends React.Component {
     }
 
     ipLookUp(){
-      axios.get(`http://ip-api.com/json`)
+      axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
         .then(response => {
             this.setState({
-              city:response.data.city
+              city:response.city
             })
             this.findSelectedLocations();
         })
