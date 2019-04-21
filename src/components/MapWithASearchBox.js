@@ -1,12 +1,14 @@
 import React from 'react';
 import GOOGLE_MAPS_API_KEY from '../../Config_Keys';
+import SideBar from './Sidebar';
+import '../styles/App.css';
 const _ = require("lodash");
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
+  Marker
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 
@@ -21,11 +23,39 @@ const MapWithASearchBox = compose(
     componentWillMount() {
       const refs = {}
 
+      const location = window.navigator && window.navigator.geolocation;
+      if (location) {
+        location.getCurrentPosition((position) => {
+          //console.log(position);
+          this.setState({
+            center:{
+              lat : position.coords.latitude,
+              lng : position.coords.longitude
+            }
+          })
+          
+          
+        }, (error) => {
+           axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
+            .then(response => {
+              console.log('Response from svc: ', response);
+              this.setState({
+                center:{
+                  lat : parseFloat(response.data.loc.split(',')[0]),
+                  lng : parseFloat(response.data.loc.split(',')[1])
+                }
+              })
+              
+            })
+
+        })
+      }
+
       this.setState({
         bounds: null,
-        center: {
-          lat: 41.9, lng: -87.624
-        },
+        /* center: {
+          lat: lat, lng: lng
+        }, */
         markers: [],
         onMapMounted: ref => {
           refs.map = ref;
@@ -65,14 +95,16 @@ const MapWithASearchBox = compose(
     },
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap,
 )(props =>
+  
   <GoogleMap
     ref={props.onMapMounted}
     defaultZoom={15}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
   >
+    <SideBar/>
     <SearchBox
       ref={props.onSearchBoxMounted}
       bounds={props.bounds}
@@ -81,13 +113,13 @@ const MapWithASearchBox = compose(
     >
       <input
         type="text"
-        placeholder="Customized your placeholder"
+        placeholder="Search the place you want"
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,
           width: `240px`,
-          height: `32px`,
-          marginTop: `27px`,
+          height: `41px`,
+          marginTop: `9px`,
           padding: `0 12px`,
           borderRadius: `3px`,
           boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
@@ -98,9 +130,15 @@ const MapWithASearchBox = compose(
       />
     </SearchBox>
     {props.markers.map((marker, index) =>
-      <Marker key={index} position={marker.position} />
+      
+      <Marker 
+        key={index} 
+        position={marker.position} 
+        />
     )}
+    
   </GoogleMap>
+  
 );
 
 export default MapWithASearchBox;
