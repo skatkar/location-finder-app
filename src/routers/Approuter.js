@@ -11,7 +11,7 @@ const AppRouter = () => (
             <Switch>
                 <Route path="/" component={MapHomeLocation} exact={true}/>
                 <Route path="/location/:locationType" component={MapSelectedLocation}/>
-                {/* <Route path="/search" component={MapWithASearchBox}/> */}
+                <Route path="/search" component={MapWithASearchBox}/>
                 <Route component={NotFound}/>
             </Switch>
         </div>
