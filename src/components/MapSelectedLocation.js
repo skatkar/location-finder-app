@@ -12,11 +12,8 @@ class MapSelectedLocation extends React.Component {
         lat:null,
         lng:null,
         city:null,
-        coordinates: [
-                        { lat: 33.684566, lng: -117.826508 }, 
-                        { lat: 34.052235, lng: -118.243683 }
-                      ],
-        temp: []
+        coordinates: []
+        
         }
      
     
@@ -48,7 +45,7 @@ class MapSelectedLocation extends React.Component {
 
     findSelectedLocations(){
       console.log("User city is: ", this.state.city);
-      api.get(`api/v1.0/locations?locationType=school`)
+      api.get(`api/v1.0/locations?locationType=${this.props.match.params.locationType}&city=${this.state.city}`)
       .then(res => {
           const locations = res.data;
           const latlongs = [];
@@ -61,7 +58,7 @@ class MapSelectedLocation extends React.Component {
           });
 
           this.setState({ 
-            temp:latlongs 
+            coordinates:latlongs 
           });
         })
     }
@@ -91,8 +88,8 @@ class MapSelectedLocation extends React.Component {
     render(){
         
         const { lat,lng}= this.state;
-        const {temp} = this.state;
-        { temp.length !==0 ? console.log(temp[0].lat + " "+ temp[0].lng + " "+ temp[1].lat + " "+temp[1].lng): console.log("Loading..")}
+        const {coordinates} = this.state;
+        { coordinates.length !==0 ? console.log(coordinates[0].lat + " "+ coordinates[0].lng + " "+ coordinates[1].lat + " "+coordinates[1].lng): console.log("Loading..")}
         
         return(
                       
