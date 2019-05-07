@@ -22,8 +22,8 @@ class MapHomeLocation extends React.Component {
       if (location ) {
         location.getCurrentPosition((position) => {
           this.setState({
-            homeLat: position.coords.latitude,
-            homeLng: position.coords.longitude
+            homeLat: (position.coords.latitude),
+            homeLng: (position.coords.longitude)
           })
         }, (error) => {
           axios.get(`https://ipinfo.io/json?token=c856b5b1bb5718`)
