@@ -10,13 +10,13 @@ import {
   const MapWithAMarker = withScriptjs(withGoogleMap(props =>
     <GoogleMap
       defaultZoom={12}
-      defaultCenter={{ lat: (props.lat), lng: (props.lng) }}
+      defaultCenter={{ lat: parseFloat(props.lat), lng: parseFloat(props.lng) }}
     >
 
     {props.coordinates.length === 0 && 
         <Marker 
         icon="https://img.icons8.com/ios/50/000000/map-pin-filled.png"
-        position={{ lat: (props.lat), lng: (props.lng) }}
+        position={{ lat: parseFloat(props.lat), lng: parseFloat(props.lng) }}
         />
     }
 
