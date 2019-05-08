@@ -11,7 +11,7 @@ const Sidebar = (props) => {
         <NavLink to="/location/college" activeClassName="is-active">Colleges</NavLink>
         <NavLink to="/location/bank" activeClassName="is-active">Banks</NavLink>
         <NavLink to="/location/park" activeClassName="is-active">Parks</NavLink>
-        <NavLink to="/location/auto" activeClassName="is-active">Auto care</NavLink>
+        <NavLink to="/location/auto" activeClassName="is-active">Auto</NavLink>
         <NavLink to="/search" activeClassName="is-active">Search</NavLink>
     </Menu>
   );
