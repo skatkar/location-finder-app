@@ -7,8 +7,11 @@ const Sidebar = (props) => {
     <Menu>
         <img src="https://img.icons8.com/dusk/128/000000/map.png"/>
         <NavLink to="/" activeClassName="is-active" exact={true}>Home</NavLink>
-        <NavLink to="/location/school" activeClassName="is-active">School</NavLink>
-        <NavLink to="/location/college" activeClassName="is-active">College</NavLink>
+        <NavLink to="/location/school" activeClassName="is-active">Schools</NavLink>
+        <NavLink to="/location/college" activeClassName="is-active">Colleges</NavLink>
+        <NavLink to="/location/bank" activeClassName="is-active">Banks</NavLink>
+        <NavLink to="/location/park" activeClassName="is-active">Parks</NavLink>
+        <NavLink to="/location/auto" activeClassName="is-active">Auto care</NavLink>
         <NavLink to="/search" activeClassName="is-active">Search</NavLink>
     </Menu>
   );
